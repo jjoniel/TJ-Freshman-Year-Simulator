@@ -1,0 +1,36 @@
+Try To Make New Friends 
+frisbeefriends.png 95 90
+Keep Quiet 
+antisocial.png 70 91
+Go To Remediation For Bio
+ibet.png 70 93
+Go To A Pep Rally
+peprally.png 85 87 
+Try Out For Golf
+golf.png 95 88
+Join Class Council
+classcouncil.png 72 86
+Ask Someone Out For Homecoming
+hoco.png 82 82
+Go To Homecoming With Your Friends
+gowithfriends.png 76 90
+Report Your Best Friend For An Honor Code Violation
+honorcode.png 50 95
+Help Them Cheat
+cheato.png 70 50
+Play Basketball
+basketball.png 90 89
+Do Your Homework Due Tomorrow
+homework.png 70 92
+Go To Lock In 
+50 86
+Stay At Home
+90 88 
+You Are Offered Substances In The Bathroom, Should You Accept
+0 0 
+Deny Them And Tell Adminstration
+82 90
+Skip School
+skippy.png 75 75
+Do Your Robot CAD
+robocad.png 60 95

@@ -25,12 +25,14 @@ public class GamePanel extends JPanel
    private JLabel imageLabel;
    private Student s;
    private ImageIcon pic, pi2;
-   public GamePanel(Student student) throws Exception
+   private Scoreboard scoreboard;
+   public GamePanel(Student student, Scoreboard sb) throws Exception
    {
       setLayout(new BorderLayout());
       setBackground(new Color(64,224,208));
       scanner= new Scanner(new File("AQuest.txt"));
       s=student;
+      scoreboard = sb;
       subpanel = new JPanel();
       subpanel.setBackground(new Color(64,224,208));
       subpanel.setLayout(new BorderLayout());
@@ -39,7 +41,7 @@ public class GamePanel extends JPanel
       welcome.setText("HELLO "+s.getName().toUpperCase()+"! \nWELCOME TO TJ FRESHMEN YEAR SIMULATOR");
       welcome.setHorizontalAlignment(SwingConstants.CENTER);
       subpanel.add(welcome, BorderLayout.CENTER);
-    
+      scoreboard.setVisible(false);
       start = new JButton("START");
       start.setFont( new Font("Times New Roman", Font.BOLD, 25));
       start.addActionListener(new StartListener());
@@ -62,7 +64,7 @@ public class GamePanel extends JPanel
       {
          arrayOfFrames[i] = new ImageIcon(new ImageIcon("animation_"+i+".jpg").getImage().getScaledInstance(600, 600, Image.SCALE_DEFAULT));;
       }
-      int delay =  2000;
+      int delay =  1000;
       t = new Timer(delay, new AnimationStepper());
       t.start();
       
@@ -89,6 +91,66 @@ public class GamePanel extends JPanel
    }
    public void askQuestion()
    {
+      int month = scoreboard.getMonth();
+      char ans, ans2;
+      ans = ' ';
+      ans2 = ' ';
+      switch(month)
+      {
+         case 12: ans = JOptionPane.showInputDialog("MIDTERMS\nWhat does rDNA stand for?\na) ribosomal deoxyribonucleic acid\nb) red dinosaurs need apples\nc) recombinant deoxyribuonucleic acid\nd) red deoxyribonucleic acid").charAt(0);
+                  if(ans == 'c')
+                  {
+                     JOptionPane.showMessageDialog(null, "YOU PASSED YOUR MIDTERMS! :)");
+                     for(int x=0; x<s.getGrades().length; x++)
+                     {
+                       s.addGrade(x,100);
+                     }
+                     ans = ' ';
+                  }
+                  else
+                  {
+                     JOptionPane.showMessageDialog(null, "YOU FAILED YOUR MIDTERMS! :(");
+                     for(int x=0; x<s.getGrades().length; x++)
+                     {
+                       s.addGrade(x,50);
+                     }
+                  }  
+                  break;
+         case 6:  ans2 = JOptionPane.showInputDialog("FINALS\n2x+7=9 x=?\na) 56\nb) 420\nc) 69\nd) 1").charAt(0);
+                  if(ans2 == 'd')
+                  {
+                     JOptionPane.showMessageDialog(null, "YOU PASSED YOUR FINALS! :)");
+                     for(int x=0; x<s.getGrades().length; x++)
+                     {
+                       s.addGrade(x,100);
+                     }
+                  }
+                  else
+                  {
+                     JOptionPane.showMessageDialog(null, "YOU FAILED YOUR FINALS! :(");
+                     for(int x=0; x<s.getGrades().length; x++)
+                     {
+                       s.addGrade(x,50);
+                     }
+                  }
+                  break;
+         case 3:  ans2 = JOptionPane.showInputDialog("ROBOT PROJECT\nWhich gear ratio will produce the fastest robot?\na) 150:30\nb) 40:20\nc) 10:50\nd) 20:10").charAt(0);
+                  if(ans2 == 'a')
+                  {
+                     JOptionPane.showMessageDialog(null, "YOU WON THE SPEED COMPETITION! :)");
+                     for(int x=0; x<s.getGrades().length; x++)
+                     {
+                       s.addGrade(x,100);
+                     }
+                  }
+                  else
+                     JOptionPane.showMessageDialog(null, "YOU LOST THE SPEED COMPETITION! :(");
+                     for(int x=0; x<s.getGrades().length; x++)
+                     {
+                       s.addGrade(x,75);
+                     }
+                  break;                      
+      }
       
       if(scanner.hasNext())
       {
@@ -101,6 +163,8 @@ public class GamePanel extends JPanel
             
             health1 = scanner.nextInt();
             grade1 = scanner.nextInt();
+            
+            scoreboard.setDate(scanner.nextInt(), scanner.nextInt(), scanner.nextInt());
             
             scanner.nextLine();
             String t1 = scanner.nextLine(); 
@@ -124,7 +188,7 @@ public class GamePanel extends JPanel
          imageLabel.setIcon(arrayOfFrames[currIndex]);
          currIndex++;
          currIndex%=arrayOfFrames.length;
-         subpanel.setBackground(new Color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256)));
+         subpanel.setBackground(new Color((int)(Math.random()*156+100),(int)(Math.random()*156+100),(int)(Math.random()*156+100)));
       }   
       
    }
@@ -135,6 +199,7 @@ public class GamePanel extends JPanel
       {
          //t.stop();
          subpanel.setVisible(false);
+         scoreboard.setVisible(true);
          welcome.setVisible(false); 
          start.setVisible(false); 
          q1.setVisible(true);
@@ -155,14 +220,14 @@ public class GamePanel extends JPanel
          { 
             for(int x=0; x<s.getGrades().length; x++)
             {
-               s.addGrade(x,grade1-(int)(Math.random()*6));
+               s.addGrade(x,grade1-(int)(Math.random()*4));
             }
          }
          else
          { 
             for(int x=0; x<s.getGrades().length; x++)
             {
-               s.addGrade(x,grade1+(int)(Math.random()*6));
+               s.addGrade(x,grade1+(int)(Math.random()*4));
             }
          }
          askQuestion(); 
@@ -178,14 +243,14 @@ public class GamePanel extends JPanel
          { 
             for(int x=0; x<s.getGrades().length; x++)
             {
-               s.addGrade(x,grade2-(int)(Math.random()*6));
+               s.addGrade(x,grade2-(int)(Math.random()*4));
             }
          }
          else
          { 
             for(int x=0; x<s.getGrades().length; x++)
             {
-               s.addGrade(x,grade2+(int)(Math.random()*6));
+               s.addGrade(x,grade2+(int)(Math.random()*4));
             }
          }
          askQuestion(); 

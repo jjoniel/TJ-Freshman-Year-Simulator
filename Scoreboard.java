@@ -70,29 +70,25 @@ public class Scoreboard extends JPanel
       exit.addActionListener(new quitListener());
       add(exit);
    }
-   public void updateDate()
+   public void setDate(int m, int d, int y)
    {
-      day++;
-      if((year==2018 && month%2==0 && day>31)||(year==2019 && month%2==1 && day>31))
-      {
-         day = 1;
-         month++;
-         if(month>12)
-         {
-            year++;
-            month = 1;
-         }     
-      }
-      else if((year==2018 && month%2==1 && day>30)||(year==2019 && month%2==0 && day>30))
-      {
-         day = 1;
-         month++;
-         if(month>12)
-         {
-            year++;
-            month = 1;
-         }     
-      }      
+      month = m;
+      day = d;
+      year = y;
+      dat.setText(month+"/"+day+"/"+year);
+      
+   }
+   public int getMonth()
+   {
+      return month;
+   }
+   public int getDay()
+   {
+      return day;
+   }
+   public int getYear()
+   {
+      return year;
    }
    private class gradeListener implements ActionListener
    {

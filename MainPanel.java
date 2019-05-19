@@ -18,7 +18,17 @@ public class MainPanel extends JPanel
        setLayout(new BorderLayout());
        String name = JOptionPane.showInputDialog("What is your name?");
        String gender = (JOptionPane.showInputDialog("What is your gender, M or F?"));
-       student = new AverageStudent( gender.charAt(0), name);
+       int type = (int)(Math.random()*3);
+       switch(type)
+       {
+         case 0: student = new BadStudent( gender.charAt(0), name); 
+                 break;
+         case 1: student = new GoodStudent( gender.charAt(0), name);
+                 break;
+         case 2: student = new AverageStudent( gender.charAt(0), name);
+                 break;        
+         
+       }
        scoreboard = new Scoreboard(student);
        add(new GamePanel(student, scoreboard), BorderLayout.CENTER);
        add(scoreboard, BorderLayout.EAST);

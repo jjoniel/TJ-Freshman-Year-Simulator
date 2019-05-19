@@ -180,6 +180,31 @@ public class GamePanel extends JPanel
             
             scanner.nextLine();
       }
+      else
+         endgame();
+   }
+   public void endgame()
+   {
+        scoreboard.setVisible(false);
+        pic1.setVisible(false);
+        pic2.setVisible(false);
+        q1.setVisible(false);
+        q2.setVisible(false); 
+        or.setVisible(false); 
+        welcome.setVisible(true);
+        if(s.getGrades()[1]>90)
+        {
+            welcome.setText("Congratulations! You finished freshmen year as a GOOD STUDENT!");   
+        }  
+        else if(s.getGrades()[1]>80)
+        {
+            welcome.setText("You finished freshmen year as a AVERAGE STUDENT.");   
+        } 
+        else
+        {
+            welcome.setText("Oh No! You finished freshmen year as a BAD STUDENT!");   
+        }   
+        add(welcome);    
    }
 
    private class AnimationStepper implements ActionListener

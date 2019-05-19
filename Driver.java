@@ -48,6 +48,7 @@ public class Driver
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        	frame.setContentPane(new MainPanel());
          frame.setVisible(true);
+         
         try
         { 
             filePath = "sound2.wav"; 

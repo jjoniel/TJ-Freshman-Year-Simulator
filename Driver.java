@@ -50,7 +50,7 @@ public class Driver
          frame.setVisible(true);
         try
         { 
-            filePath = "sound.wav"; 
+            filePath = "sound2.wav"; 
             Driver audioPlayer =  
                             new Driver(); 
               

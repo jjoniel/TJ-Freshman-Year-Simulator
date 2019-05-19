@@ -28,10 +28,10 @@ public class GamePanel extends JPanel
    private Scoreboard scoreboard;
    public GamePanel(Student student, Scoreboard sb) throws Exception
    {
+      s=student;
       setLayout(new BorderLayout());
       setBackground(new Color(64,224,208));
-      scanner= new Scanner(new File("AQuest.txt"));
-      s=student;
+      scanner= new Scanner(new File((s.getGender()+"quest.txt").toLowerCase()));
       scoreboard = sb;
       subpanel = new JPanel();
       subpanel.setBackground(new Color(64,224,208));
@@ -144,12 +144,14 @@ public class GamePanel extends JPanel
                      }
                   }
                   else
+                  {
                      JOptionPane.showMessageDialog(null, "YOU LOST THE SPEED COMPETITION! :(");
                      for(int x=0; x<s.getGrades().length; x++)
                      {
                        s.addGrade(x,75);
                      }
-                  break;                      
+                  }
+                  break;                     
       }
       
       if(scanner.hasNext())

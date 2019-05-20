@@ -182,6 +182,10 @@ public class GamePanel extends JPanel
       }
       else
          endgame();
+      if(s.getGrades()[1]<50)
+      {
+         JOptionPane.showMessageDialog(null,"You have been kicked out of TJ for having bad grades.");
+      }
    }
    public void endgame()
    {
@@ -191,10 +195,11 @@ public class GamePanel extends JPanel
         q1.setVisible(false);
         q2.setVisible(false); 
         or.setVisible(false); 
+        decisions.setVisible(false);
         welcome.setVisible(true);
         if(s.getGrades()[1]>90)
         {
-            welcome.setText("Congratulations! You finished freshmen year as a GOOD STUDENT!");   
+            welcome.setText("Congratulations "+s.getName()+"! You finished freshmen year as a GOOD STUDENT!");   
         }  
         else if(s.getGrades()[1]>80)
         {
@@ -204,7 +209,8 @@ public class GamePanel extends JPanel
         {
             welcome.setText("Oh No! You finished freshmen year as a BAD STUDENT!");   
         }   
-        add(welcome);    
+        add(welcome); 
+        
    }
 
    private class AnimationStepper implements ActionListener

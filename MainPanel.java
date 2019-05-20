@@ -17,7 +17,7 @@ public class MainPanel extends JPanel
    {
        setBackground(new Color(64,224,208));
        setLayout(new BorderLayout());
-       String name = JOptionPane.showInputDialog("What is your name?");
+       String name = JOptionPane.showInputDialog("What is your first name?");
        while(!(gender.equalsIgnoreCase("m") || gender.equalsIgnoreCase("f"))) 
        {
          gender = (JOptionPane.showInputDialog("What is your gender, M or F?"));

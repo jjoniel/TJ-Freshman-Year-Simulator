@@ -18,7 +18,9 @@ public abstract class Student
    public Student(char g, String n)
    {
       gender = g;
-      name = n;
+      name = (""+n.charAt(0)).toUpperCase();
+      name +=n.substring(1).toLowerCase(); 
+      
       health = 75;
    }
    /*************************************************************** 

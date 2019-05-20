@@ -25,12 +25,12 @@ robocad.png 80 96
 Go To Lock In 
 lockin.png 50 86 5 3 2019
 Stay At Home
-skippy.png 90 94 
+home.png 90 94 
 Ask Someone To Sadies
 sadies.png 86 92 5 7 2018
 Go With Your Friends
 gowithfriendss.png 96 94
 Rehearse For IBET Presentation
-skippy.png  85 93 6 3 2019
+prez.png  85 93 6 3 2019
 Rehearse For Romeo Juliet Project
-skippy.png  70 96   
+skippy.png  70 96  

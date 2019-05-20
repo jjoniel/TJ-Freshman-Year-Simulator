@@ -11,13 +11,13 @@ public class GamePanel extends JPanel
    private static final int FRAME = 1000;   
    private static final Color BACKGROUND = new Color(204, 204, 204);
    private int health1, grade1, health2, grade2;
-   private JButton q1, q2, start;
+   private JButton q1, q2, start, credits, back;
    private JLabel pic1, pic2,tj1;
    private BufferedImage myImage;
    private Graphics g;
    private int xPos, yPos;
    private Scanner scanner;
-   private JLabel welcome, or, decisions;
+   private JLabel welcome, or, decisions, credit;
    private JPanel subpanel, choicepanel;
    private Timer t;
    private int currIndex;
@@ -196,6 +196,7 @@ public class GamePanel extends JPanel
         q2.setVisible(false); 
         or.setVisible(false); 
         decisions.setVisible(false);
+        choicepanel.setVisible(false);
         welcome.setVisible(true);
         if(s.getGrades()[1]>90)
         {
@@ -210,6 +211,16 @@ public class GamePanel extends JPanel
             welcome.setText("Oh No! You finished freshmen year as a BAD STUDENT!");   
         }   
         add(welcome); 
+        credits = new JButton("Game Credits");
+        credits.setFont( new Font("Times New Roman", Font.BOLD, 25));
+        credits.addActionListener(new CreditListener());
+        back = new JButton("Back to Results");
+        back.setFont( new Font("Times New Roman", Font.BOLD, 25));
+        back.addActionListener(new BackListener());
+        add(back, BorderLayout.NORTH);
+        back.setVisible(false);
+        add(credits, BorderLayout.SOUTH);
+        
         
    }
 
@@ -296,6 +307,31 @@ public class GamePanel extends JPanel
             }
          }
          askQuestion(); 
+      }
+   }
+   private class CreditListener implements ActionListener
+   {
+      public void actionPerformed(ActionEvent e)
+      {
+         back.setVisible(true);
+         credits.setVisible(false);
+         credit = new JLabel("This game was created by Joniel Jerome, Madhav Samudrala, and Zaeem Qureshi in 2019.");
+         credit.setHorizontalAlignment(SwingConstants.CENTER);
+         credit.setFont( new Font("Times New Roman", Font.BOLD, 25));
+         add(credit,BorderLayout.CENTER);
+         welcome.setVisible(false);
+         
+      }
+   }
+   private class BackListener implements ActionListener
+   {
+      public void actionPerformed(ActionEvent e)
+      {
+         credit.setVisible(false);
+         welcome.setVisible(true);     
+         credits.setVisible(true);
+         back.setVisible(false);
+         add(welcome, BorderLayout.CENTER);  
       }
    }
 

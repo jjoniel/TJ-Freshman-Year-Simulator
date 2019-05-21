@@ -11,7 +11,7 @@ public class GamePanel extends JPanel
    private static final int FRAME = 1000;   
    private static final Color BACKGROUND = new Color(204, 204, 204);
    private int health1, grade1, health2, grade2;
-   private JButton q1, q2, start, credits, back;
+   private JButton q1, q2, start, credits, back, instructions;
    private JLabel pic1, pic2,tj1;
    private BufferedImage myImage;
    private Graphics g;
@@ -47,6 +47,11 @@ public class GamePanel extends JPanel
       start.addActionListener(new StartListener());
       start.setPreferredSize(new Dimension(10,30));
       subpanel.add(start, BorderLayout.SOUTH);
+      instructions = new JButton("INSTRUCTIONS");
+      instructions.setFont(new Font("Times New Roman", Font.BOLD, 15));
+      instructions.addActionListener(new InstructionsListener());
+      instructions.setPreferredSize(new Dimension(125, 50));
+      subpanel.add(instructions, BorderLayout.WEST);
       
       // tj1 = new JLabel();
 //       ImageIcon tj = new ImageIcon(new ImageIcon("animation_0.jpg").getImage().getScaledInstance(600, 600, Image.SCALE_DEFAULT));
@@ -189,7 +194,8 @@ public class GamePanel extends JPanel
    }
    public void endgame()
    {
-        scoreboard.setVisible(false);
+        scoreboard.setVisible(true);
+        scoreboard.endingScoreboard();
         pic1.setVisible(false);
         pic2.setVisible(false);
         q1.setVisible(false);
@@ -263,6 +269,13 @@ public class GamePanel extends JPanel
          askQuestion();     
       }
    }
+   private class InstructionsListener implements ActionListener
+   {
+      public void actionPerformed(ActionEvent e)
+      {
+         JOptionPane.showMessageDialog(null, "1. You will be presented with two options, you must choose one of the two in order to proceed throughout the game.\n2. Each choice will change your health and grades accordingly\n3. You can check your grades using the sis button and health with the health button. You may also dropout at any time\n4. ENJOY!!");
+      }
+   }
    private class Q1Listener implements ActionListener
    {
       public void actionPerformed(ActionEvent e)
@@ -334,6 +347,7 @@ public class GamePanel extends JPanel
          add(welcome, BorderLayout.CENTER);  
       }
    }
+     
 
 
 }

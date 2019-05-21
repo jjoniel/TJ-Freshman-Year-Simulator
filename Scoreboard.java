@@ -5,18 +5,20 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
 import javax.swing.JOptionPane;
+import java.util.Scanner;
 public class Scoreboard extends JPanel
 {
    private JLabel tools, date, dat, name, gender;
-   private JButton exit, sis, health;
+   private JButton exit, sis, health, highest;
    private int month,day,year;
+   private Scanner infile;
    public Scoreboard(Student s)
    {
       setBorder(BorderFactory.createLineBorder(Color.black, 2))   ;
       day = 28;
       month = 8;
       year = 2018;
-      setLayout(new GridLayout(7,1));
+      setLayout(new GridLayout(8,1));
       tools = new JLabel("TOOLS");
       tools.setFont( new Font("Calibri", Font.BOLD, 25));
       tools.setHorizontalAlignment(SwingConstants.CENTER);
@@ -48,6 +50,8 @@ public class Scoreboard extends JPanel
       health.addActionListener(new healthListener(s));
       health.setBackground(Color.WHITE);
       add(health);
+      
+      
             
       //info 
       name = new JLabel(""+s.getName());
@@ -69,6 +73,15 @@ public class Scoreboard extends JPanel
       exit.setBackground(Color.RED);
       exit.addActionListener(new quitListener());
       add(exit);
+      
+      //highest scores button
+      highest = new JButton("Highest Scores");
+      highest.setFont( new Font("Calibri",Font.PLAIN, 25));
+      highest.setBackground(new Color(59, 89, 182));
+      highest.setBackground(Color.WHITE);
+      highest.addActionListener(new highestListener());
+      add(highest);
+      highest.setVisible(false);
    }
    public void setDate(int m, int d, int y)
    {
@@ -89,6 +102,11 @@ public class Scoreboard extends JPanel
    public int getYear()
    {
       return year;
+   }
+   public void endingScoreboard()
+   {
+      exit.setText("End Game");
+      highest.setVisible(true);
    }
    private class gradeListener implements ActionListener
    {
@@ -123,10 +141,17 @@ public class Scoreboard extends JPanel
          }
       
    }
+   
    private class quitListener implements ActionListener
    {
          public void actionPerformed(ActionEvent e)
          {
+               String k = "";
+               k = exit.getText();
+               if(k.equals("End Game"))
+               {
+                  System.exit(0);
+               }
                int d = JOptionPane.showConfirmDialog(null, "Are you sure you want to drop out?");
                switch(d)
                {
@@ -137,4 +162,32 @@ public class Scoreboard extends JPanel
          }
       
    }
+   private class highestListener implements ActionListener
+   {
+         Student p;
+         public highestListener(Student s)
+         {
+            p = s;
+         }      
+         public void actionPerformed(ActionEvent e)
+         {
+            
+            PrintStream outfile = null;
+            try
+            {
+               outfile = new PrintStream(new FileOutputStream("HighScores.txt"));
+            }
+            catch(FileNotFoundException e)
+            {
+               JOptionPane.showMessageDialog(null,"The file could not be created.");
+            }
+          	outfile.println(5);
+            for(int x = 0; x < 5; x++)
+            {
+               outfile.print
+            outfile.close();
+         }
+      
+   }
+   
 }

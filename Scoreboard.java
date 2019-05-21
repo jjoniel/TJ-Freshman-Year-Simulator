@@ -5,20 +5,22 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
 import javax.swing.JOptionPane;
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 public class Scoreboard extends JPanel
 {
    private JLabel tools, date, dat, name, gender;
    private JButton exit, sis, health, highest;
+   public JButton save;
    private int month,day,year;
    private Scanner infile;
-   public Scoreboard(Student s)
+   public Scoreboard(Student s) throws Exception
    {
       setBorder(BorderFactory.createLineBorder(Color.black, 2))   ;
       day = 28;
       month = 8;
       year = 2018;
-      setLayout(new GridLayout(8,1));
+      setLayout(new GridLayout(9,1));
       tools = new JLabel("TOOLS");
       tools.setFont( new Font("Calibri", Font.BOLD, 25));
       tools.setHorizontalAlignment(SwingConstants.CENTER);
@@ -66,6 +68,24 @@ public class Scoreboard extends JPanel
       gender.setFont( new Font("Calibri",Font.PLAIN, 25));
       add(gender);
       
+      //highest scores button
+      highest = new JButton("Highest Scores");
+      highest.setFont( new Font("Calibri",Font.PLAIN, 25));
+      highest.setBackground(new Color(59, 89, 182));
+      highest.setBackground(Color.WHITE);
+      highest.addActionListener(new highestListener(s));
+      add(highest);
+      highest.setVisible(false);
+      
+      //save scores button
+      save = new JButton("Save Score");
+      save.setFont( new Font("Calibri",Font.PLAIN, 25));
+      save.setBackground(new Color(59, 89, 182));
+      save.setBackground(Color.WHITE);
+      save.addActionListener(new saveListener(s));
+      add(save);
+      save.setVisible(false);
+      
       //dropout button
       exit = new JButton("Dropout");
       exit.setFont( new Font("Calibri",Font.PLAIN, 25));
@@ -74,14 +94,6 @@ public class Scoreboard extends JPanel
       exit.addActionListener(new quitListener());
       add(exit);
       
-      //highest scores button
-      highest = new JButton("Highest Scores");
-      highest.setFont( new Font("Calibri",Font.PLAIN, 25));
-      highest.setBackground(new Color(59, 89, 182));
-      highest.setBackground(Color.WHITE);
-      highest.addActionListener(new highestListener());
-      add(highest);
-      highest.setVisible(false);
    }
    public void setDate(int m, int d, int y)
    {
@@ -107,6 +119,7 @@ public class Scoreboard extends JPanel
    {
       exit.setText("End Game");
       highest.setVisible(true);
+      save.setVisible(true);
    }
    private class gradeListener implements ActionListener
    {
@@ -162,12 +175,22 @@ public class Scoreboard extends JPanel
          }
       
    }
-   private class highestListener implements ActionListener
+   private class saveListener implements ActionListener
    {
          Student p;
-         public highestListener(Student s)
+         Scanner infile;
+         int[] scores;
+         public saveListener(Student s) throws Exception
          {
             p = s;
+            infile = new Scanner(new File("HighScores.txt"));
+            scores = new int[5];
+            int x = 0;
+            while(infile.hasNext())
+            {
+               scores[x] = infile.nextInt();
+               x++;   
+            }
          }      
          public void actionPerformed(ActionEvent e)
          {
@@ -177,15 +200,45 @@ public class Scoreboard extends JPanel
             {
                outfile = new PrintStream(new FileOutputStream("HighScores.txt"));
             }
-            catch(FileNotFoundException e)
+            catch(FileNotFoundException ex)
             {
                JOptionPane.showMessageDialog(null,"The file could not be created.");
             }
-          	outfile.println(5);
-            for(int x = 0; x < 5; x++)
+            for(int y = 0; y<scores.length; y++)
             {
-               outfile.print
+               if(p.getGrades()[1]>scores[y])
+               {
+                  scores[y] = p.getGrades()[1];
+               }
+            }
+            for(int y = 0; y<scores.length; y++)
+            {
+               outfile.println(""+scores[y]);
+            }
             outfile.close();
+         }
+      
+   }
+   private class highestListener implements ActionListener
+   {
+         Student p;
+         Scanner infile;
+         public highestListener(Student s) throws Exception
+         {
+            p = s;
+            infile = new Scanner(new File("HighScores.txt"));
+         }      
+         public void actionPerformed(ActionEvent e)
+         {
+            try
+            {
+               infile = new Scanner(new File("HighScores.txt"));
+            }
+            catch(FileNotFoundException ex)
+            {
+               JOptionPane.showMessageDialog(null,"The file could not be created.");
+            }
+            JOptionPane.showMessageDialog(null,"HIGH SCORES\n1. "+infile.nextLine()+"\n2. "+infile.nextLine()+"\n3. "+infile.nextLine()+"\n4. "+infile.nextLine()+"\n5. "+infile.nextLine());
          }
       
    }

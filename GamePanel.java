@@ -51,7 +51,7 @@ public class GamePanel extends JPanel
       instructions.setFont(new Font("Times New Roman", Font.BOLD, 15));
       instructions.addActionListener(new InstructionsListener());
       instructions.setPreferredSize(new Dimension(125, 50));
-      subpanel.add(instructions, BorderLayout.WEST);
+      add(instructions, BorderLayout.SOUTH);
       
       // tj1 = new JLabel();
 //       ImageIcon tj = new ImageIcon(new ImageIcon("animation_0.jpg").getImage().getScaledInstance(600, 600, Image.SCALE_DEFAULT));

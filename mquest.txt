@@ -1,7 +1,7 @@
 Try To Make New Friends 
 frisbeefriends.png 95 93 8 28 2018
 Keep Quiet 
-antisocial.png 70 91
+antisocial.png 70 89
 Try Out For Golf 
 golf.png 95 89 8 30 2018
 Join Class Council
@@ -9,23 +9,23 @@ classcouncil.png 72 87
 Go To Remediation For Bio 
 ibet.png 70 95 10 2 2018
 Go To A Pep Rally
-peprally.png 85 91 
+peprally.png 85 75 
 Ask Someone To Hoco
-hoco.png 86 92 10 7 2018
+hoco.png 86 85 10 7 2018
 Go With Your Friends
-gowithfriends.png 96 94
+gowithfriends.png 96 92
 Report Your Best Friend For An Honor Code Violation
 honorcode.png 50 95 11 15 2018
 Help Them Cheat
-cheato.png 70 56
+cheato.png 70 0
 Play Basketball
-basketball.png 90 89 12 18 2018
+basketball.png 90 81 12 18 2018
 Do Your Homework Due Tomorrow
-homework.png 70 97
+homework.png 70 100
 Skip School
 skippy.png 75 78 3 27 2019
 Do Your Robot CAD
-robocad.png 80 96
+robocad.png 80 100
 Go To Lock In 
 lockin.png 50 86 5 3 2019
 Stay At Home
@@ -33,4 +33,4 @@ home.png 90 94
 Rehearse For IBET Presentation
 prez.png  85 93 6 3 2019
 Rehearse For Romeo Juliet Project
-rj.PNG  70 96   
+rj.PNG  70 97   

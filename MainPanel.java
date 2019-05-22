@@ -12,13 +12,13 @@ public class MainPanel extends JPanel
    private Student student;
    public Scoreboard scoreboard;
    private String gender = "";
-   
+   private JButton instructions;   
    public MainPanel() throws Exception
    {
        setBackground(new Color(64,224,208));
        setLayout(new BorderLayout());
-       String name = JOptionPane.showInputDialog("What is your first name?");
-       while(!(gender.equalsIgnoreCase("m") || gender.equalsIgnoreCase("f"))) 
+       String name = JOptionPane.showInputDialog("What is your first name?"); 
+       while(!(gender.equalsIgnoreCase("m")||gender.equalsIgnoreCase("f")))
        {
          gender = (JOptionPane.showInputDialog("What is your gender, M or F?"));
        }       
@@ -36,6 +36,18 @@ public class MainPanel extends JPanel
        scoreboard = new Scoreboard(student);
        add(new GamePanel(student, scoreboard), BorderLayout.CENTER);
        add(scoreboard, BorderLayout.EAST);
+       instructions = new JButton("INSTRUCTIONS");
+       instructions.setFont(new Font("Times New Roman", Font.BOLD, 15));
+       instructions.addActionListener(new InstructionsListener());
+       instructions.setPreferredSize(new Dimension(125, 50));
+       add(instructions, BorderLayout.NORTH);
 
+   }
+   private class InstructionsListener implements ActionListener
+   {
+      public void actionPerformed(ActionEvent e)
+      {
+         JOptionPane.showMessageDialog(null, "1. You will be presented with two options, you must choose one of the two in order to proceed throughout the game.\n2. Each choice will change your health and grades accordingly\n3. You can check your grades using the sis button and health with the health button. You may also dropout at any time\n4. ENJOY!!");
+      }
    }
 }

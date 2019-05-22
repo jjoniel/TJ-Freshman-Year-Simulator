@@ -61,7 +61,8 @@ public class BadStudent extends Student
    **************************************************************/
    public void addGrade(int period, int grade)
    {
-      grades[period] = (grades[period]+grade)/2;
+      numgrades++;
+      grades[period] = ((grades[period]*(numgrades-1))+grade)/numgrades;
    }
    /***************************************************************
    * Retrives a question from bad student's data file

@@ -47,11 +47,6 @@ public class GamePanel extends JPanel
       start.addActionListener(new StartListener());
       start.setPreferredSize(new Dimension(10,30));
       subpanel.add(start, BorderLayout.SOUTH);
-      instructions = new JButton("INSTRUCTIONS");
-      instructions.setFont(new Font("Times New Roman", Font.BOLD, 15));
-      instructions.addActionListener(new InstructionsListener());
-      instructions.setPreferredSize(new Dimension(125, 50));
-      add(instructions, BorderLayout.SOUTH);
       
       // tj1 = new JLabel();
 //       ImageIcon tj = new ImageIcon(new ImageIcon("animation_0.jpg").getImage().getScaledInstance(600, 600, Image.SCALE_DEFAULT));
@@ -109,6 +104,8 @@ public class GamePanel extends JPanel
                      for(int x=0; x<s.getGrades().length; x++)
                      {
                        s.addGrade(x,100);
+                       s.addGrade(x,100);
+                       s.addGrade(x,100);
                      }
                      ans = ' ';
                   }
@@ -117,6 +114,8 @@ public class GamePanel extends JPanel
                      JOptionPane.showMessageDialog(null, "YOU FAILED YOUR MIDTERMS! :(");
                      for(int x=0; x<s.getGrades().length; x++)
                      {
+                       s.addGrade(x,50);
+                       s.addGrade(x,50);
                        s.addGrade(x,50);
                      }
                   }  
@@ -128,6 +127,8 @@ public class GamePanel extends JPanel
                      for(int x=0; x<s.getGrades().length; x++)
                      {
                        s.addGrade(x,100);
+                       s.addGrade(x,100);
+                       s.addGrade(x,100);
                      }
                   }
                   else
@@ -135,6 +136,8 @@ public class GamePanel extends JPanel
                      JOptionPane.showMessageDialog(null, "YOU FAILED YOUR FINALS! :(");
                      for(int x=0; x<s.getGrades().length; x++)
                      {
+                       s.addGrade(x,50);
+                       s.addGrade(x,50);
                        s.addGrade(x,50);
                      }
                   }
@@ -146,6 +149,8 @@ public class GamePanel extends JPanel
                      for(int x=0; x<s.getGrades().length; x++)
                      {
                        s.addGrade(x,100);
+                       s.addGrade(x,100);
+                       s.addGrade(x,100);
                      }
                   }
                   else
@@ -153,6 +158,8 @@ public class GamePanel extends JPanel
                      JOptionPane.showMessageDialog(null, "YOU LOST THE SPEED COMPETITION! :(");
                      for(int x=0; x<s.getGrades().length; x++)
                      {
+                       s.addGrade(x,75);
+                       s.addGrade(x,75);
                        s.addGrade(x,75);
                      }
                   }
@@ -269,31 +276,24 @@ public class GamePanel extends JPanel
          askQuestion();     
       }
    }
-   private class InstructionsListener implements ActionListener
-   {
-      public void actionPerformed(ActionEvent e)
-      {
-         JOptionPane.showMessageDialog(null, "1. You will be presented with two options, you must choose one of the two in order to proceed throughout the game.\n2. Each choice will change your health and grades accordingly\n3. You can check your grades using the sis button and health with the health button. You may also dropout at any time\n4. ENJOY!!");
-      }
-   }
    private class Q1Listener implements ActionListener
    {
       public void actionPerformed(ActionEvent e)
       {
          s.updateHealth(health1);
-         int pm = (int)(Math.random()*2);
-         if(pm==0)
+         double pm = Math.random()*2;
+         if(pm<1)
          { 
             for(int x=0; x<s.getGrades().length; x++)
             {
-               s.addGrade(x,grade1-(int)(Math.random()*4));
+               s.addGrade(x,grade1-(int)(Math.random()*((int)(Math.random()*7))));
             }
          }
          else
          { 
             for(int x=0; x<s.getGrades().length; x++)
             {
-               s.addGrade(x,grade1+(int)(Math.random()*4));
+               s.addGrade(x,grade1+(int)(Math.random()*((int)(Math.random()*7))));
             }
          }
          askQuestion(); 
@@ -304,19 +304,19 @@ public class GamePanel extends JPanel
       public void actionPerformed(ActionEvent e)
       {
          s.updateHealth(health2);
-         int pm = (int)(Math.random()*2);
-         if(pm==0)
+         double pm = Math.random()*2;
+         if(pm<1)
          { 
             for(int x=0; x<s.getGrades().length; x++)
             {
-               s.addGrade(x,grade2-(int)(Math.random()*4));
+               s.addGrade(x,grade2-(int)(Math.random()*((int)(Math.random()*7))));
             }
          }
          else
          { 
             for(int x=0; x<s.getGrades().length; x++)
             {
-               s.addGrade(x,grade2+(int)(Math.random()*4));
+               s.addGrade(x,grade2+(int)(Math.random()*((int)(Math.random()*7))));
             }
          }
          askQuestion(); 

@@ -179,12 +179,13 @@ public class Scoreboard extends JPanel
    {
          Student p;
          Scanner infile;
-         int[] scores;
+         int[] scores, fin;
          public saveListener(Student s) throws Exception
          {
             p = s;
             infile = new Scanner(new File("HighScores.txt"));
             scores = new int[5];
+            fin = new int[5];
             int x = 0;
             while(infile.hasNext())
             {
@@ -206,14 +207,21 @@ public class Scoreboard extends JPanel
             }
             for(int y = 0; y<scores.length; y++)
             {
-               if(p.getGrades()[1]>scores[y])
+               if(p.getGrades()[0]>scores[y])
                {
-                  scores[y] = p.getGrades()[1];
+                  fin[y] = p.getGrades()[0];
+                  while(y<(scores.length-1))
+                  {
+                     fin[y+1] = scores[y];
+                     y++;
+                  }
+                  break;
                }
+               fin[y] = scores[y];               
             }
-            for(int y = 0; y<scores.length; y++)
+            for(int y = 0; y<fin.length; y++)
             {
-               outfile.println(""+scores[y]);
+               outfile.println(""+fin[y]);
             }
             outfile.close();
          }
@@ -236,7 +244,7 @@ public class Scoreboard extends JPanel
             }
             catch(FileNotFoundException ex)
             {
-               JOptionPane.showMessageDialog(null,"The file could not be created.");
+               JOptionPane.showMessageDialog(null,"The file could not be found.");
             }
             JOptionPane.showMessageDialog(null,"HIGH SCORES\n1. "+infile.nextLine()+"\n2. "+infile.nextLine()+"\n3. "+infile.nextLine()+"\n4. "+infile.nextLine()+"\n5. "+infile.nextLine());
          }

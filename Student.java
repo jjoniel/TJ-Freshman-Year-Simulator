@@ -10,6 +10,7 @@ public abstract class Student
    private char gender;
    private String name;    
    private int health;
+   public int numgrades;
    /************************************************************* 
    * Constructs a student with gender specified by g and a name specified by n.
    * @param g    gender
@@ -22,6 +23,7 @@ public abstract class Student
       name +=n.substring(1).toLowerCase(); 
       
       health = 75;
+      numgrades = 1;
    }
    /*************************************************************** 
    * Returns the students's gender
